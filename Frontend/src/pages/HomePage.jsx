@@ -2,7 +2,9 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <>
+    <div className='text-2xl h-[calc(100%-100px)]  font-bold flex justify-center items-center'>Home page</div>
+    </>
   )
 }
 
