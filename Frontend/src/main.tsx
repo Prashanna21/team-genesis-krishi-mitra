@@ -5,6 +5,7 @@ import Layout from './Layout.tsx'
 import { createBrowserRouter } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
+import MarketPlace from './pages/MarketPlace.jsx'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
@@ -12,24 +13,28 @@ import { store } from './app/store.js'
 
 const router = createBrowserRouter([
   {
-    path : "/",
+    path: "/",
     element: <Layout />, //appp
     children: [
       {
-        path: "",
+        path: "/",
         element: <HomePage />
       },
       {
         path: "login",
         element: <LoginPage />
-      }
+      },
+      {
+        path: "marketplace",
+        element: <MarketPlace />
+      },
     ]
   }
 ])
 
 
 createRoot(document.getElementById('root')!).render(
-<Provider store={store}>
+  <Provider store={store}>
     <RouterProvider router={router} />
-    </Provider>
-  )
+  </Provider>
+)
