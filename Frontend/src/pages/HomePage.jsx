@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import ContainerBox from "../components/ContainerBox.jsx";
 
 function HomePage() {
   return (
-    <div>HomePage</div>
-  )
+    <div>
+      <ContainerBox>heloo</ContainerBox>
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;
