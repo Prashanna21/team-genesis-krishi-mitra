@@ -1,9 +1,9 @@
 import { gemini } from "../utility/geminiUse.js";
-
+import axios from "axios";
 
 const generateReport = async (req, res) => {
   const { date, season, area, crop, location } = req.body;
-   const response = await gemini(`
+  const response = await gemini(`
     You are an expert agricultural consultant specializing in crop economics and farm management in Nepal. **You are processing the provided farm data for potato cultivation to generate a comprehensive report** in a specific JSON format, including detailed calculations and relevant agricultural advice.
 
 **Input Data (JSON):**
@@ -192,14 +192,26 @@ output
 
 
     `);
-   console.log(response);
+  // console.log(response);
   // Validate the input data
   if (!date || !season || !area || !crop || !location) {
     return res.status(400).json({ error: "All fields are required" });
   }
-  const responseFromSoilApi = await fetch(`https://soil.narc.gov.np/soil/api/?lat=${location[0]}&lon=${location[1]}`);
+  const responseFromSoilApi = await fetch(
+    `https://soil.narc.gov.np/soil/api/?lat=${location[0]}&lon=${location[1]}`
+  );
   const soilData = await responseFromSoilApi.json();
 
+  const priceApiRes = await axios.post(
+    "http://127.0.0.1:5000/api/v2/predict_price",
+    {
+      Commodity: "bitter gourd",
+      Date: "20-08-2027",
+      Unit: "kgs",
+    }
+  );
+
+  console.log("price prediction: ", priceApiRes);
 
   // Simulate report generation
   const report = {
@@ -216,20 +228,21 @@ output
 };
 
 const isCropLand = async (req, res) => {
-    const { lat, lng } = req.query;
-    console.log(`Received coordinates: lat=${lat}, lng=${lng}`);
-    
-    // Validate the input coordinates
-    if (!lat || !lng) {
-        return res.status(400).json({ error: "Latitude and longitude are required" });
-    }
-    
-    const responseFromSoilApi = await fetch(`https://soil.narc.gov.np/soil/api/?lat=${lat}&lon=${lng}`);
-    const soilData = await responseFromSoilApi.json();
-    console.log(soilData);
+  const { lat, lng } = req.query;
 
-    res.status(200).json(soilData);
-}
+  // Validate the input coordinates
+  if (!lat || !lng) {
+    return res
+      .status(400)
+      .json({ error: "Latitude and longitude are required" });
+  }
 
+  const responseFromSoilApi = await fetch(
+    `https://soil.narc.gov.np/soil/api/?lat=${lat}&lon=${lng}`
+  );
+  const soilData = await responseFromSoilApi.json();
+
+  res.status(200).json(soilData);
+};
 
 export { generateReport, isCropLand };
