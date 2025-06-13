@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <>
       <div className="text-2xl min-h-[calc(100%-100px)]  font-bold flex flex-col justify-center items-center px-5 gap-7 ">
-        <ContainerBox customCSS="text-center gap-7 ">
+        <ContainerBox customCSS="text-center gap-5 ">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,8 +38,10 @@ function HomePage() {
             <span>Nature</span>
           </motion.div>
 
-          <div className="font-semibold font-primary">Friend of Farmer</div>
-          <div className="font-light font-primary text-sm">
+          <div className="font-semibold font-primary text-2xl">
+            Friend of Farmer
+          </div>
+          <div className="font-light font-primary text-xl">
             We are transforming agriculture by directly connecting farmers with
             markets, ensuring they get fair prices and better opportunities. By
             removing middlemen and streamlining the supply chain.
@@ -59,11 +61,14 @@ function HomePage() {
             </div>
           </div>
           <div className="align-middle items-center justify-center">
-            <Button className=" w-52 rounded-2xl ">
-              Connect to Farmers <HiArrowLongRight />
+            <Button className=" w-52 rounded-2xl h-14">
+              <span className="text-md">Connect to Farmers</span>{" "}
+              <HiArrowLongRight />
             </Button>
           </div>
-          <span className="font-light text-sm underline">Learn More</span>
+          <span className="font-light text-sm underline cursor-pointer">
+            Learn More
+          </span>
         </ContainerBox>
         {/* //our features */}
         <motion.div
