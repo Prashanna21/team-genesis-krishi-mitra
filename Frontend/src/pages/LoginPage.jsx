@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import LoginForm from "../components/UserAuth/LoginForm.jsx";
 
 function LoginPage() {
   return (
-    <div>LoginPage</div>
-  )
+    <div>
+      <LoginForm />
+    </div>
+  );
 }
 
-export default LoginPage
+export default LoginPage;
