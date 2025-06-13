@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Layout from './Layout.tsx'
@@ -9,7 +8,7 @@ import MarketPlace from './pages/MarketPlace.jsx'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
-
+import GenerateReportPage from './pages/GenerateReportPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +27,10 @@ const router = createBrowserRouter([
         path: "marketplace",
         element: <MarketPlace />
       },
+      {
+        path: "generate-report",
+        element: <GenerateReportPage />
+      }
     ]
   }
 ])
