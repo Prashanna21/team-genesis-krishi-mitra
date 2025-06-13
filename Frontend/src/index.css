@@ -5,6 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* custom css */
+  --color-primary-darkgreen: #226e40;
+  --color-secondary-lightgreen: #95cb85;
+
+  /* inbulit css */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

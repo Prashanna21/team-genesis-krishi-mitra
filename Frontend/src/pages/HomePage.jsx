@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import ContainerBox from "../components/ContainerBox.jsx";
 
 function HomePage() {
   return (
@@ -8,4 +9,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default HomePage;
