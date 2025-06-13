@@ -31,6 +31,8 @@ function Navbar() {
             : param === "/marketplace"
             ? "MarketPlace"
             : param === "/about"
+            ? "Login"
+            : param === "/login"
             ? "About Us"
             : "Krishi Mitra"}
         </span>
@@ -70,7 +72,7 @@ function Navbar() {
             <FaInfoCircle /> About us
           </Link>
           <Link
-            to=""
+            to="/login"
             className="flex items-center gap-1 px-3 py-1 bg-green-600 rounded-full hover:bg-green-700 text-sm"
             onClick={() => setMenuOpen(false)}
           >

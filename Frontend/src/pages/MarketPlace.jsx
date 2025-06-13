@@ -97,7 +97,7 @@ const MarketPlace = () => {
       {/* Cart Icon Button */}
       <div className="fixed bottom-4 right-2 z-50">
         <button
-          className="relative bg-[#95CB85] text-white p-4 rounded-full shadow-lg hover:bg-green-700"
+          className="relative bg-[#222222] text-white p-4 rounded-full shadow-lg hover:bg-green-700"
           onClick={() => setCartVisible(!isCartVisible)}
         >
           <FaCartShopping />

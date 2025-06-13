@@ -14,11 +14,11 @@ export default function Card({ name, price, imageUrl }) {
   };
 
   return (
-    <div className="bg-[#5EA664] text-white rounded-2xl p-4 h-80 w-full flex flex-col items-center shadow-lg mx-auto">
+    <div className="bg-[#5EA664] text-white rounded-2xl  h-80 w-full flex flex-col items-center shadow-lg mx-auto shadow-2xl">
       <img
         src={imageUrl}
         alt={name}
-        className="w-36 h-36 rounded-2xl object-cover mb-3"
+        className="w-full h-40 object-cover rounded-t-2xl rounded-b-none"
       />
       <div className="text-lg mb-2">{name}</div>
       <div className="flex items-center space-x-3 mb-2">
