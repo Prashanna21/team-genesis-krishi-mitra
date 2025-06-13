@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginStatus } from "../app/infoSlice";
 import { FaBars, FaTimes, FaStore, FaInfoCircle, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 function Navbar() {
+  const param = useLocation().pathname;
+  console.log(param);
   const dispatch = useDispatch();
 
   dispatch(setLoginStatus(true));
@@ -24,11 +26,19 @@ function Navbar() {
           </div>
         </Link>
         <span className="text-green-800 text-2xl font-bold text-center">
-          Krishi Mitra
+          {param === "/"
+            ? "Krishi Mitra"
+            : param === "/marketplace"
+            ? "MarketPlace"
+            : param === "/about"
+            ? "About Us"
+            : "Krishi Mitra"}
         </span>
         {/* Hamburger button */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => {
+            setMenuOpen(!menuOpen);
+          }}
           className="text-3xl text-green-900 focus:outline-none transition-transform duration-200"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
@@ -37,29 +47,32 @@ function Navbar() {
 
         {/* Sliding menu */}
         <div
-          className={`absolute top-0 right-14 h-14 mt-2 bg-green-800 text-white rounded-full px-4 py-2 flex gap-3 items-center transition-all duration-300 ease-in-out 
-          ${
-            menuOpen
-              ? "opacity-100 scale-100"
-              : "opacity-0 scale-95 pointer-events-none"
-          }
-        `}
+          className={`absolute top-0 right-14 h-14 mt-2 bg-green-800 text-white rounded-full px-4 py-2 flex gap-3 items-center transition-all duration-300 ease-in-out transform
+    ${
+      menuOpen
+        ? "translate-x-0 opacity-100"
+        : "translate-x-10 opacity-0 pointer-events-none"
+    }
+  `}
         >
           <Link
             to="/marketplace"
             className="flex items-center gap-1 px-3 py-1 bg-green-600 rounded-full hover:bg-green-700 text-sm"
+            onClick={() => setMenuOpen(false)}
           >
             <FaStore /> MarketPlace
           </Link>
           <Link
             to="/"
             className="flex items-center gap-1 px-3 py-1 bg-green-600 rounded-full hover:bg-green-700 text-sm"
+            onClick={() => setMenuOpen(false)}
           >
             <FaInfoCircle /> About us
           </Link>
           <Link
             to=""
             className="flex items-center gap-1 px-3 py-1 bg-green-600 rounded-full hover:bg-green-700 text-sm"
+            onClick={() => setMenuOpen(false)}
           >
             <FaUser /> Login
           </Link>
