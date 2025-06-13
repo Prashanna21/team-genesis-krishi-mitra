@@ -41,6 +41,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  background-color: #ffffd6;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -108,6 +115,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --color-bg-secondary: #95cb85;
 }
 
 @layer base {
@@ -118,4 +126,3 @@
     @apply bg-background text-foreground;
   }
 }
-
