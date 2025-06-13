@@ -17,13 +17,30 @@ const sendDataToServer = async (data) => {
   }
 };
 
+const sendMapDataToServer = async (lat, lng, setCropLandError) => {
+  
+  try {
+    const response = await axios.get(`http://localhost:3000/report/is-crop-land?lat=${lat}&lng=${lng}`);
+    console.log("Map Data Response:", response.data.result);
+    if(response.data.result == "Please select the crop land"){
+      setCropLandError("This is not a crop land");
+    }
+    else{
+      setCropLandError(""); 
+    }
+  } catch (error) {
+    console.error("Error sending map data to server:", error);
+  }
+};
+
 const seasons = ['Spring', 'Summer', 'Autumn', 'Winter'];
 const crops = ['Potato', 'Pepper', 'Soyabean', 'Tomato', 'Strawberry', 'Corn', 'Peach', 'Maize', 'Rice'];
 
-const LocationMarker = ({ position, setPosition }) => {
+const LocationMarker = ({ position, setPosition, setCropLandError }) => {
   useMapEvents({
     click(e) {
       setPosition([e.latlng.lat, e.latlng.lng]);
+      sendMapDataToServer(e.latlng.lat, e.latlng.lng, setCropLandError);
     },
   });
 
@@ -38,6 +55,7 @@ function GenerateReportPage() {
   const [season, setSeason] = useState(seasons[0]);
   const [crop, setCrop] = useState(crops[0]);
   const [autoPosition, setAutoPosition] = useState(null);
+  const [cropLandError , setCropLandError] = useState('');
 
   useEffect(() => {
     if (locationMode === 'auto') {
@@ -137,17 +155,22 @@ function GenerateReportPage() {
           </div>
 
           {locationMode === 'manual' ? (
-            <div className="w-full h-64 border rounded overflow-hidden">
+            <div> 
+              <div className="w-full h-64 border rounded overflow-hidden relative z-0">
               <MapContainer center={[28.3949, 84.1240]} zoom={7} className="w-full h-full">
                 <TileLayer
                   attribution='&copy; OpenStreetMap contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <LocationMarker position={manualPosition} setPosition={setManualPosition} />
+                <LocationMarker position={manualPosition} setPosition={setManualPosition} setCropLandError={setCropLandError}/>
               </MapContainer>
+
+              
+            </div>
+            <div>{cropLandError} </div>
             </div>
           ) : (
-            <div className="text-sm text-green-700">📍Using your device's current location</div>
+            <div className="text-sm text-green-700">{cropLandError}</div>
           )}
         </div>
 
