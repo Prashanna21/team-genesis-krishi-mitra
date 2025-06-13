@@ -1,11 +1,10 @@
 import React from "react";
 
-const ContainerBox = ({ children, className }) => {
+const ContainerBox = ({ children, customCSS }) => {
   return (
     <div
-      className={`flex flex-col bg-secondary-lightgreen h-1/3 w-[100%] rounded-2xl px-5 py-6  {}`}
+      className={`flex flex-col bg-secondary-lightgreen  rounded-2xl px-5 py-6  ${customCSS}`}
     >
-      {" "}
       {children}
     </div>
   );
