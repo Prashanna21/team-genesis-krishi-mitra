@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 const Features = ({ dashboard = false }) => {
@@ -75,6 +76,7 @@ const Features = ({ dashboard = false }) => {
               )
             )}
           </div>
+
         </div>
       </section>
     </>
