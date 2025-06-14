@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import GenerateReportPage from './pages/GenerateReportPage.jsx'
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage.jsx"
+import Report from "./pages/ReportPage.jsx";
 
 import "./lib/i18n.ts";
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "rent-tools",
         element: <RentPage />
+      },
+      {
+        path: 'report',
+        element: <Report />
       },
 
     ]
