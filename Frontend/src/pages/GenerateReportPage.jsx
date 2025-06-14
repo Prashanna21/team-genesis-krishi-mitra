@@ -34,7 +34,6 @@ const sendMapDataToServer = async (lat, lng, setCropLandError) => {
 };
 
 const seasons = ['Spring', 'Summer', 'Autumn', 'Winter'];
-const crops = ['Potato', 'Pepper', 'Soyabean', 'Tomato', 'Strawberry', 'Corn', 'Peach', 'Maize', 'Rice'];
 
 const LocationMarker = ({ position, setPosition, setCropLandError }) => {
   useMapEvents({
@@ -53,7 +52,6 @@ function GenerateReportPage() {
   const [date, setDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [area, setArea] = useState('');
   const [season, setSeason] = useState(seasons[0]);
-  const [crop, setCrop] = useState(crops[0]);
   const [autoPosition, setAutoPosition] = useState(null);
   const [cropLandError , setCropLandError] = useState('');
 
@@ -77,7 +75,6 @@ function GenerateReportPage() {
       date,
       season,
       area: parseFloat(area),
-      crop,
       locationMode,
       location,
     };
@@ -174,15 +171,7 @@ function GenerateReportPage() {
           )}
         </div>
 
-        {/* Crop Selection */}
-        <div className="mt-8">
-          <label className="block font-medium mb-1">Crop Type</label>
-          <select className="w-full p-2 border rounded" value={crop} onChange={(e) => setCrop(e.target.value)}>
-            {crops.map((crop) => (
-              <option key={crop}>{crop}</option>
-            ))}
-          </select>
-        </div>
+
 
         {/* Submit Button */}
         <div className="mt-8 text-center">

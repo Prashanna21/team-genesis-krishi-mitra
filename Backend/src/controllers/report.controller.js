@@ -2,55 +2,75 @@ import { gemini } from "../utility/geminiUse.js";
 import axios from "axios";
 
 const generateReport = async (req, res) => {
-  const { date, season, area, crop, location } = req.body;
+  const { date, season, area, location } = req.body;
+
+  if (!date || !season || !area || !location) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+  const responseFromSoilApi = await fetch(
+    `https://soil.narc.gov.np/soil/api/?lat=${location[0]}&lon=${location[1]}`
+  );
+  const soilData = await responseFromSoilApi.json();
+
+  const report = {
+    id: Date.now(),
+    date,
+    season,
+    area,
+    location,
+    soilData,
+  };
+  console.log("report: ", report);
+  const suggestedCropAndTime = await gemini(`
+I will give you a JSON input. Based on the region, season, and soil quality in it, suggest the best crop to plant.
+
+👉 Only select from the crop list provided below.
+👉 Only return **raw JSON**, no markdown, no extra formatting, no explanation.
+👉 Follow this strict JSON format exactly:
+{
+  "suggestedCrop": "your_crop_name_from_list",
+  "timeRequiredForCropToGrow": "day-month-year",
+  "reasonForSelection": "reson for selection with location reasoning"
+}
+
+Crop List:
+"apple(fuji)", "apple(jholey)", "arum", "asparagus", "bakula", "bamboo shoot", "banana", "barela", "bauhania flower", "bitter gourd", "bottle gourd", "brd leaf mustard", "brinjal long", "brinjal round", "brocauli", "cabbage", "cabbage(local)", "cabbage(terai)", "capsicum", "carrot(local)", "carrot(terai)", "cauli local", "cauli local(jyapu)", "cauli terai", "celery", "chilli dry", "chilli green", "chilli green(akbare)", "chilli green(bullet)", "chilli green(machhe)", "christophine", "clive dry", "clive green", "coriander green", "cow pea(long)", "cowpea(short)", "cress leaf", "cucumber(hybrid)", "cucumber(local)", "drumstick", "fennel leaf", "fenugreek leaf", "fish fresh", "fish fresh(bachuwa)", "fish fresh(chhadi)", "fish fresh(mungari)", "fish fresh(rahu)", "french bean(hybrid)", "french bean(local)", "french bean(rajma)", "garlic dry chinese", "garlic dry nepali", "garlic green", "ginger", "grapes(black)", "grapes(green)", "green peas", "guava", "gundruk", "jack fruit", "kinnow", "kiwi", "knolkhol", "lemon", "lettuce", "lime", "litchi(indian)", "litchi(local)", "maize", "mandarin", "mango(calcutte)", "mango(chousa)", "mango(dushari)", "mango(maldah)", "mint", "mombin", "mushroom(button)", "mushroom(kanya)", "musk melon", "mustard leaf", "neuro", "okara", "onion dry (chinese)", "onion dry (indian)", "onion green", "orange(indian)", "orange(nepali)", "papaya(indian)", "papaya(nepali)", "parseley", "pear(chinese)", "pear(local)", "pineapple", "pointed gourd(local)", "pointed gourd(terai)", "pomegranate", "potato red", "potato red(indian)", "potato red(mude)", "potato white", "pumpkin", "raddish red", "raddish white(hybrid)", "raddish white(local)", "red cabbbage", "smooth gourd", "snake gourd", "soyabean green", "spinach leaf", "sponge gourd", "squash(long)", "squash(round)", "strawberry", "sugarbeet", "sugarcane", "sweet lime", "sweet orange", "sweet potato", "sword bean", "tamarind", "tofu", "tomato big(indian)", "tomato big(nepali)", "tomato small(indian)", "tomato small(local)", "tomato small(terai)", "tomato small(tunnel)", "turnip", "turnip a", "water melon(dotted)", "water melon(green)", "yam"
+
+Here is the report:
+${JSON.stringify(report)}
+`);
+const cleanResponse = JSON.parse(suggestedCropAndTime.replace(/```json|```/g, "").trim());
+
+    console.log("suggested crop and time: ", cleanResponse);
+    console.log("reson for selection: ", cleanResponse.reasonForSelection)
+
+   const priceApiRes = await axios.post(
+    "http://127.0.0.1:5000/api/v2/predict_price",
+    {
+      Commodity: cleanResponse.suggestedCrop,
+      Date: cleanResponse.timeRequiredForCropToGrow,
+      Unit: "kgs",
+    }
+  );
+
+  const fullReport = {
+    ...report, 
+    ...cleanResponse,
+
+  }
+
+
+
   const response = await gemini(`
     You are an expert agricultural consultant specializing in crop economics and farm management in Nepal. **You are processing the provided farm data for potato cultivation to generate a comprehensive report** in a specific JSON format, including detailed calculations and relevant agricultural advice.
 
 **Input Data (JSON):**
-json
-{
-  "id": 1749834000415,
-  "date": "2025-06-13",
-  "season": "Spring",
-  "area": 2342,
-  "crop": "Potato",
-  "location": [ 27.6713907, 85.3413926 ],
-  "futurePrice": [20, 30, 27],
-  "soilCondition": {
-    "ph": "7.69",
-    "organic_matter": "1.67 %",
-    "total_nitrogen": "0.08 %",
-    "potassium": "198.02 kg/ha",
-    "p2o5": "38.9 kg/ha",
-    "boron": "0.14 ppm",
-    "zinc": "0.42 ppm",
-    "sand": "29.96 %",
-    "clay": "16.54 %",
-    "slit": "55.51 %",
-    "parentsoil": "Fluvial non calcareous",
-    "province": "Sudurpaschim",
-    "district": "Kailali",
-    "palika": "Kailari Gaunpalika"
-  }
-}
+${JSON.stringify(fullReport)}
 
 output
 **Output Data (JSON):**
 {
-  "estimated_labour_cost": {
-    "value": "NPR [calculated_value] (approximately)",
-    "calculation": {
-      "assumptions": [
-        "Typical labor requirement for potato cultivation in Nepal: ~65,000 - 70,000 NPR/hectare for manual operations (including land prep, planting, weeding, harvesting).",
-        "Using an average of NPR 66,500/hectare."
-      ],
-      "steps": [
-        "Convert area from sq m to hectares (2342 sq m / 10,000 = 0.2342 ha).",
-        "Estimated labour cost = 0.2342 hectares * NPR 66,500/hectare."
-      ],
-      "final_calculation": "0.2342 * 66500"
-    }
-  },
+ 
   "fertilizer_cost": {
     "value": "NPR [calculated_value] (approximately)",
     "calculation": {
@@ -97,7 +117,7 @@ output
     "value": "NPR [calculated_value] (approximately)",
     "calculation": {
       "steps": [
-        "Sum of direct costs = Estimated Labour Cost + Fertilizer Cost + Estimated Seed Cost.",
+        "Sum of direct costs =  Fertilizer Cost + Estimated Seed Cost",
         "Miscellaneous Costs = 20% of (Sum of direct costs) (for irrigation, pesticides, tools, land preparation, etc.).",
         "Total Cost = Sum of direct costs + Miscellaneous Costs."
       ],
@@ -192,37 +212,13 @@ output
 
 
     `);
-  // console.log(response);
-  // Validate the input data
-  if (!date || !season || !area || !crop || !location) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-  const responseFromSoilApi = await fetch(
-    `https://soil.narc.gov.np/soil/api/?lat=${location[0]}&lon=${location[1]}`
-  );
-  const soilData = await responseFromSoilApi.json();
+  console.log(response);
 
-  const priceApiRes = await axios.post(
-    "http://127.0.0.1:5000/api/v2/predict_price",
-    {
-      Commodity: "bitter gourd",
-      Date: "20-08-2027",
-      Unit: "kgs",
-    }
-  );
+  
 
-  console.log("price prediction: ", priceApiRes);
+ 
 
-  // Simulate report generation
-  const report = {
-    id: Date.now(),
-    date,
-    season,
-    area,
-    crop,
-    location,
-    soilData,
-  };
+
 
   res.status(201).json(report);
 };
