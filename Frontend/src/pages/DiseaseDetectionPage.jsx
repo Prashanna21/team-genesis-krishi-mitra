@@ -7,12 +7,25 @@ function DiseaseDetectionPage() {
   const [previewSrc, setPreviewSrc] = useState("DetectionPageImg.jpg");
   const [isImageChange, setIsImageChange] = useState(false);
   const [imageFile, setImageFile] = useState(null);
+  const [solutionData, setSolutionData] = useState({}); // 🆕 added
+
+  const getSolution = async (diseaseAndCropName) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/report/disease-solution",
+        { diseaseAndCropName }
+      );
+
+      setSolutionData(response.data.cleanResponse); // 🆕 store response
+      return response.data.cleanResponse;
+    } catch (error) {
+      console.error("Error sending data to server:", error);
+    }
+  };
 
   const sendPhotoToServer = async (imageFile) => {
     const formData = new FormData();
     formData.append("image", imageFile);
-    console.log(imageFile);
-    console.log(formData);
 
     try {
       const response = await fetch(
@@ -20,8 +33,11 @@ function DiseaseDetectionPage() {
         { method: "POST", body: formData }
       );
       if (!response.ok) throw new Error("Failed to Fetch");
-      const data = await response.json();
-      console.log("Server response:", data);
+      const diseaseData = await response.json();
+      console.log("Server response:", diseaseData.Predictions);
+      const solution = await getSolution(diseaseData.Predictions);
+
+      console.log("Solution: ", solution);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -38,7 +54,7 @@ function DiseaseDetectionPage() {
   };
 
   return (
-    <div className="px-5">
+    <div className="px-5 my-6 max-w-[1200px] mx-auto">
       <ContainerBox customCSS={"px-10"}>
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Detect Plant Disease</h1>
@@ -48,7 +64,7 @@ function DiseaseDetectionPage() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col justify-center items-center space-y-4">
           <img
             src={previewSrc}
             alt="Plant Disease Detection"
@@ -61,7 +77,7 @@ function DiseaseDetectionPage() {
             type="file"
             accept="image/*"
             capture="environment"
-            className="block w-full text-sm text-gray-600
+            className="block text-sm text-gray-600
               file:mr-4 file:py-2 file:px-4
               file:rounded-full file:border-0
               file:text-sm file:font-semibold
@@ -83,6 +99,37 @@ function DiseaseDetectionPage() {
           >
             Detect Disease
           </Button>
+        )}
+
+        {Object.keys(solutionData).length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-2xl font-semibold mb-4 text-green-800 text-center">
+              Possible Detected Diseases & Solutions
+            </h2>
+
+            <div className="grid gap-6">
+              {Object.entries(solutionData).map(
+                ([diseaseName, { solution }], index) => {
+                  const [crop, disease] = diseaseName.split("___");
+
+                  return (
+                    <div
+                      key={index}
+                      className="border border-green-300 p-4 rounded-lg shadow-md bg-green-50"
+                    >
+                      <h3 className="text-xl font-bold text-green-700">
+                        🌿 {crop.replace(/_/g, " ")}
+                      </h3>
+                      <p className="text-md italic text-gray-600 mb-2">
+                        Disease: {disease.replace(/_/g, " ")}
+                      </p>
+                      <p className="text-gray-800">{solution}</p>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
         )}
       </ContainerBox>
     </div>
