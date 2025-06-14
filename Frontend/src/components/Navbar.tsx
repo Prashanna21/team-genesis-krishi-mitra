@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
+import {IoIosPaper} from "react-icons/io"
 import { IoPerson } from "react-icons/io5";
 import { GrMenu } from "react-icons/gr";
 import { useState } from "react";
@@ -19,6 +20,7 @@ const Navbar = () => {
 
   const pages: pageObg[] = [
     { name: "Home", path: "/", icon: FaHome },
+    {name:"Generate Report", path:"/generate-report", icon:IoIosPaper},
     { name: "Marketplace", path: "/marketplace", icon: FaShoppingCart },
     { name: "Login", path: "/login", icon: IoPerson },
   ]

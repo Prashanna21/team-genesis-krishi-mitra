@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ContainerBox from "../components/ContainerBox";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Button } from "../components/ui/Button";
 import axios from "axios";
 
 const sendDataToServer = async (data) => {
@@ -72,7 +69,8 @@ function GenerateReportPage() {
     }
   }, [locationMode]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e?.preventDefault();
     const location = locationMode === "manual" ? manualPosition : autoPosition;
 
     const reportData = {
@@ -86,19 +84,23 @@ function GenerateReportPage() {
   };
 
   return (
-    <div className="px-5">
-      <ContainerBox customCSS={"px-10"}>
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Generate Report</h1>
-          <p className="text-gray-800">
-            Generate your report about the crops based on date, season, area,
-            and location.
-          </p>
+    <section className="w-full min-h-[calc(100vh-4.5rem)] grid md:grid-cols-2 grid-cols-1">
+      <div
+        className="w-full bg-cover bg-center relative flex items-center justify-center"
+        style={{ backgroundImage: `url("/potato.jpg")` }}
+      >
+        <div className="w-full bg-emerald-950/80 absolute z-0 top-0 bottom-0"></div>
+        <div className="w-full max-w-110 p-4 text-4xl text-white z-10 font-bold">
+          <h1>Find The Best Possible Crop to Grow </h1>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Season Selection */}
-          <div>
+      </div>
+      <form
+        className="w-full flex flex-col justify-center p-8 mx-auto"
+        onSubmit={handleSubmit}
+      >
+        {/* Season Selection */}
+        <div className="w-full flex flex-col gap-4 max-w-xl mx-auto">
+          <div className="w-full">
             <label className="block font-medium mb-1 ml-2">Season</label>
             <select
               className="w-full p-2 border-2 rounded-sm"
@@ -116,6 +118,7 @@ function GenerateReportPage() {
             <label className="block font-medium mb-1">Date</label>
             <input
               type="date"
+              required
               className="w-full p-2 rounded border-2"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -129,73 +132,76 @@ function GenerateReportPage() {
             <input
               type="number"
               value={area}
+              required
               onChange={(e) => setArea(e.target.value)}
               placeholder="Enter area"
               className="w-full p-2 border-2 rounded"
             />
           </div>
-        </div>
-
-        {/* Location Selection */}
-        <div className="mt-8">
-          <h3 className="text-lg font-semibold mb-2">Geolocation Selection</h3>
-          <div className="flex items-center space-x-4 mb-4">
-            <label>
-              <input
-                type="radio"
-                value="auto"
-                checked={locationMode === "auto"}
-                onChange={() => setLocationMode("auto")}
-                className="mr-1"
-              />
-              Automatic
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="manual"
-                checked={locationMode === "manual"}
-                onChange={() => setLocationMode("manual")}
-                className="mr-1"
-              />
-              Manual
-            </label>
-          </div>
-
-          {locationMode === "manual" ? (
-            <div>
-              <div className="w-full h-64 border rounded overflow-hidden relative z-0">
-                <MapContainer
-                  center={[28.3949, 84.124]}
-                  zoom={7}
-                  className="w-full h-full"
-                >
-                  <TileLayer
-                    attribution="&copy; OpenStreetMap contributors"
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  <LocationMarker
-                    position={manualPosition}
-                    setPosition={setManualPosition}
-                    setCropLandError={setCropLandError}
-                  />
-                </MapContainer>
-              </div>
-              <div>{cropLandError} </div>
+          {/* Location Selection */}
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold mb-2">
+              Geolocation Selection
+            </h3>
+            <div className="flex items-center space-x-4 mb-4">
+              <button
+                type="button"
+                onClick={() => setLocationMode("auto")}
+                className={`p-2 px-4 border-3 font-semibold cursor-pointer rounded-xl transition-all duration-300 hover:scale-105 ${
+                  locationMode === "auto"
+                    ? "border-blue-500 text-blue-500 shadow-xl"
+                    : "border-slate-400 text-slate-600"
+                }`}
+              >
+                Automatic
+              </button>
+              <button
+                type="button"
+                onClick={() => setLocationMode("manual")}
+                className={`p-2 px-4 border-3 font-semibold cursor-pointer rounded-xl transition-all duration-300 hover:scale-105 ${
+                  locationMode === "manual"
+                    ? "border-blue-500 text-blue-500 shadow-xl"
+                    : "border-slate-400 text-slate-600"
+                }`}
+              >
+                Manual
+              </button>
             </div>
-          ) : (
-            <div className="text-sm text-green-700">{cropLandError}</div>
-          )}
-        </div>
 
-        {/* Submit Button */}
-        <div className="mt-8 text-center">
-          <Button onClick={handleSubmit} className="text-md">
-            Generate Report
-          </Button>
+            {locationMode === "manual" ? (
+              <div>
+                <div className="w-full h-64 border rounded overflow-hidden relative z-0">
+                  <MapContainer
+                    center={[28.3949, 84.124]}
+                    zoom={7}
+                    className="w-full h-full"
+                  >
+                    <TileLayer
+                      attribution="&copy; OpenStreetMap contributors"
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <LocationMarker
+                      position={manualPosition}
+                      setPosition={setManualPosition}
+                      setCropLandError={setCropLandError}
+                    />
+                  </MapContainer>
+                </div>
+                <div>{cropLandError} </div>
+              </div>
+            ) : (
+              <div className="text-sm text-green-700">{cropLandError}</div>
+            )}
+            <div className="pt-4">
+              <button className="text-white bg-slate-950 p-2 px-4 transition-all duration-300 hover:bg-black text-md">
+                Generate Report
+              </button>
+            </div>
+          </div>
+          {/* Submit Button */}
         </div>
-      </ContainerBox>
-    </div>
+      </form>
+    </section>
   );
 }
 
