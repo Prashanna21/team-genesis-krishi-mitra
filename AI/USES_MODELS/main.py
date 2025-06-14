@@ -7,6 +7,7 @@ import calendar as cd
 import joblib
 import numpy as np
 from PIL import Image
+from flask_cors import CORS
 
 #predict disease
 disease_model = tf.keras.models.load_model( "model/plant_disease_detection/plant_disease.keras")
@@ -22,6 +23,8 @@ with open("model/price_estimate/structure.json", "r") as f:
     json_data = json.load(f)
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route("/api/v2/predict_price", methods=["POST"])
 def predict_price():
@@ -87,6 +90,7 @@ def predict_price():
 
 @app.route("/api/v2/detect_disease", methods=["POST"])
 def detect_disease():
+    print("files : " , request.files)
     if 'image' not in request.files:
         return jsonify({"error":"No image detected in the request"}), 400
     
@@ -100,6 +104,7 @@ def detect_disease():
         img_array = np.expand_dims(img_array, axis=0)
                 
         prediction = disease_model.predict(img_array)
+        
         
         
         
