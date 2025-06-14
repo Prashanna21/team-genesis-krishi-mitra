@@ -1,28 +1,31 @@
-import FarmerCart from '../models/farmerCart.model.js';
+import FarmerCart from "../models/farmerCart.model.js";
 
-export const saveFamerCart =async(req, res) => {
+export const saveFamerCart = async (req, res) => {
   try {
-    const { location, productName, price, stock } = req.body;
+    const { location, name, price, stock } = req?.body;
 
-    if (!location || !productName || !price || !stock) {
+    if (!location || !name || !price || !stock) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     const newCart = new FarmerCart({
+      image: req?.file?.path?.replace("//", "/"),
       location,
-      productName,
-      
+      name,
+
       price,
-      stock
+      stock,
     });
 
     await newCart.save();
-    res.status(201).json({ message: "Farmer cart saved successfully", cart: newCart });
+    res
+      .status(201)
+      .json({ message: "Farmer cart saved successfully", cart: newCart });
   } catch (error) {
     console.error("Error saving farmer cart:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
+};
 
 export const getFarmerCart = async (req, res) => {
   try {
@@ -32,4 +35,4 @@ export const getFarmerCart = async (req, res) => {
     console.error("Error fetching farmer cart:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
+};

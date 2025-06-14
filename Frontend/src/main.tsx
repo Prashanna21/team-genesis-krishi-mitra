@@ -58,6 +58,7 @@ const router = createBrowserRouter([
       {
         path: "farmer/marketplace",
         element: <MarketFarmer />
+      }, {
         path: 'report',
         element: <Report />
       },
