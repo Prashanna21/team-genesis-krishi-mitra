@@ -25,16 +25,30 @@ function LoginForm() {
 
       const data = await res.json();
 
-      if (res.ok) {
-        setResponseMsg("Login successful!");
-        if (data.role === "farmer") {
-          navigate("/farmer");
-        } else {
-          navigate("/marketplace");
-        }
-      } else {
-        setResponseMsg(data.message || "Login failed.");
+      console.log(data);
+
+      if (!res?.ok) {
+        throw new Error(data?.message || "Login failed.");
       }
+
+      setResponseMsg("Login successful!");
+      if (data?.user?.role === "farmer") {
+        navigate("/farmer");
+      } else {
+        navigate("/marketplace");
+      }
+
+      // if (res.ok) {
+      //   alert(data?.role);
+      //   setResponseMsg("Login successful!");
+      //   if (data?.role === "farmer") {
+      //     navigate("/farmer");
+      //   } else {
+      //     navigate("/marketplace");
+      //   }
+      // } else {
+      //   setResponseMsg(data.message || "Login failed.");
+      // }
     } catch (err) {
       console.error(err);
       setResponseMsg("Error connecting to backend.");

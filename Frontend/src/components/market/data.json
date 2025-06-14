@@ -1,0 +1,122 @@
+[
+  {
+    "_id": "1",
+    "name": "Carrot Sweetness",
+    "price": 120.0,
+    "location": "Bhaktapur",
+    "stock": "1000 kg",
+    "image": "https://theseedcompany.ca/cdn/shop/files/crop_CARR1923_Carrot___Sweetness_Pelleted_Long.png?v=1720113309&width=800"
+  },
+  {
+    "_id": "2",
+    "name": "Chili Pack",
+    "price": 130.0,
+    "location": "Kathmandu",
+    "stock": "50 kg",
+    "image": "https://t4.ftcdn.net/jpg/02/49/93/33/240_F_249933303_rB82fjbNuZdT3444cZfutFG1Wau0T1VA.jpg"
+  },
+  {
+    "_id": "3",
+    "name": "Red Tomato Basket",
+    "price": 140.0,
+    "location": "Lalitpur",
+    "stock": "200 baskets",
+    "image": "https://t4.ftcdn.net/jpg/05/12/34/11/240_F_512341168_h8XTo4O2X1Tj4YHtVy6sRne85twEokgG.jpg"
+  },
+  {
+    "_id": "4",
+    "name": "Fresh Red Onion",
+    "price": 100.0,
+    "location": "Pokhara",
+    "stock": "500 kg",
+    "image": "https://t4.ftcdn.net/jpg/00/69/19/09/240_F_69190946_dO9NYtUPGwAcKBR3pzeuwNkQy9bRCDbg.jpg"
+  },
+  {
+    "_id": "5",
+    "name": "Green Leaf Bundle",
+    "price": 90.0,
+    "location": "Butwal",
+    "stock": "300 bundles",
+    "image": "https://i0.wp.com/live.staticflickr.com/65535/54473906289_30bdfbe1a2_z.jpg?resize=640%2C427&ssl=1"
+  },
+  {
+    "_id": "1",
+    "name": "Carrot Sweetness",
+    "price": 120.0,
+    "location": "Bhaktapur",
+    "stock": "1000 kg",
+    "image": "https://theseedcompany.ca/cdn/shop/files/crop_CARR1923_Carrot___Sweetness_Pelleted_Long.png?v=1720113309&width=800"
+  },
+  {
+    "_id": "2",
+    "name": "Chili Pack",
+    "price": 130.0,
+    "location": "Kathmandu",
+    "stock": "50 kg",
+    "image": "https://t4.ftcdn.net/jpg/02/49/93/33/240_F_249933303_rB82fjbNuZdT3444cZfutFG1Wau0T1VA.jpg"
+  },
+  {
+    "_id": "3",
+    "name": "Red Tomato Basket",
+    "price": 140.0,
+    "location": "Lalitpur",
+    "stock": "200 baskets",
+    "image": "https://t4.ftcdn.net/jpg/05/12/34/11/240_F_512341168_h8XTo4O2X1Tj4YHtVy6sRne85twEokgG.jpg"
+  },
+  {
+    "_id": "4",
+    "name": "Fresh Red Onion",
+    "price": 100.0,
+    "location": "Pokhara",
+    "stock": "500 kg",
+    "image": "https://t4.ftcdn.net/jpg/00/69/19/09/240_F_69190946_dO9NYtUPGwAcKBR3pzeuwNkQy9bRCDbg.jpg"
+  },
+  {
+    "_id": "5",
+    "name": "Green Leaf Bundle",
+    "price": 90.0,
+    "location": "Butwal",
+    "stock": "300 bundles",
+    "image": "https://i0.wp.com/live.staticflickr.com/65535/54473906289_30bdfbe1a2_z.jpg?resize=640%2C427&ssl=1"
+  },
+  {
+    "_id": "1",
+    "name": "Carrot Sweetness",
+    "price": 120.0,
+    "location": "Bhaktapur",
+    "stock": "1000 kg",
+    "image": "https://theseedcompany.ca/cdn/shop/files/crop_CARR1923_Carrot___Sweetness_Pelleted_Long.png?v=1720113309&width=800"
+  },
+  {
+    "_id": "2",
+    "name": "Chili Pack",
+    "price": 130.0,
+    "location": "Kathmandu",
+    "stock": "50 kg",
+    "image": "https://t4.ftcdn.net/jpg/02/49/93/33/240_F_249933303_rB82fjbNuZdT3444cZfutFG1Wau0T1VA.jpg"
+  },
+  {
+    "_id": "3",
+    "name": "Red Tomato Basket",
+    "price": 140.0,
+    "location": "Lalitpur",
+    "stock": "200 baskets",
+    "image": "https://t4.ftcdn.net/jpg/05/12/34/11/240_F_512341168_h8XTo4O2X1Tj4YHtVy6sRne85twEokgG.jpg"
+  },
+  {
+    "_id": "4",
+    "name": "Fresh Red Onion",
+    "price": 100.0,
+    "location": "Pokhara",
+    "stock": "500 kg",
+    "image": "https://t4.ftcdn.net/jpg/00/69/19/09/240_F_69190946_dO9NYtUPGwAcKBR3pzeuwNkQy9bRCDbg.jpg"
+  },
+  {
+    "_id": "5",
+    "name": "Green Leaf Bundle",
+    "price": 90.0,
+    "location": "Butwal",
+    "stock": "300 bundles",
+    "image": "https://i0.wp.com/live.staticflickr.com/65535/54473906289_30bdfbe1a2_z.jpg?resize=640%2C427&ssl=1"
+  }
+]
