@@ -1,7 +1,12 @@
 import React from "react";
+import FCard from "../components/FarmerDashBoard/FCard";
 
 const FarmerDashboard = () => {
-  return <div>FarmerDashBoard</div>;
+  return (
+    <div>
+      <FCard />
+    </div>
+  );
 };
 
 export default FarmerDashboard;

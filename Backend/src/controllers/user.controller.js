@@ -32,7 +32,7 @@ export const loginUser = async (req, res) => {
     }
 
     // Find user by email
-    const user = await User.findOne({ email: "demo@gmail.com" });
+    const user = await User.findOne({ email });
 
     if (!user || user.password !== password) {
       return res.status(401).json({ message: "Invalid email or password." });

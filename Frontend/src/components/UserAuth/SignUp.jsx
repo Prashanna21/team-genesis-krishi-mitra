@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../ui/button.jsx";
 
 function SignupForm() {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
@@ -10,13 +12,13 @@ function SignupForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch("api", {
+      const res = await fetch("http://localhost:3000/user/save-user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
+          email,
           password,
           role,
         }),
@@ -38,15 +40,16 @@ function SignupForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-4 space-y-4 border rounded-md shadow bg-amber-50"
+      className="max-w-md mx-5 p-4 space-y-4 border rounded-md shadow bg-amber-50 "
     >
+      <label className="block font-bold text-3xl text-center">Sign Up</label>
       <div>
-        <label className="block font-medium">Name</label>
+        <label className="block font-medium">Email</label>
         <input
           type="text"
-          value={name}
+          value={email}
           required
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full px-3 py-2 border rounded"
         />
       </div>
@@ -75,14 +78,10 @@ function SignupForm() {
           <option value="farmer">Farmer</option>
         </select>
       </div>
-
-      <button
-        type="submit"
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-      >
-        Sign Up
-      </button>
-
+      <div className="flex flex-col items-center space-y-2">
+        <Button type="submit">Sign Up</Button>
+        <Link to="/login">Login</Link>
+      </div>
       {responseMsg && <p className="mt-2 text-center text-sm">{responseMsg}</p>}
     </form>
   );

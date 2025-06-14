@@ -3,7 +3,7 @@ import LoginForm from "../components/UserAuth/LoginForm.jsx";
 
 function LoginPage() {
   return (
-    <div>
+    <div className="my-40">
       <LoginForm />
     </div>
   );

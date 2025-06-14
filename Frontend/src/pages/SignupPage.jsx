@@ -3,7 +3,7 @@ import SignUp from "../components/UserAuth/SignUp.jsx";
 
 function SignupPage() {
   return (
-    <div>
+    <div className="my-28">
       <SignUp />
     </div>
   );
