@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
-import ContainerBox from '../components/ContainerBox';
-import { Button } from '../components/ui/Button';
-import axios from 'axios';
+import React, { useState } from "react";
+import ContainerBox from "../components/ContainerBox";
+import { Button } from "../components/ui/Button";
+import axios from "axios";
 
 function DiseaseDetectionPage() {
-  const [previewSrc, setPreviewSrc] = useState('DetectionPageImg.jpg');
+  const [previewSrc, setPreviewSrc] = useState("DetectionPageImg.jpg");
   const [isImageChange, setIsImageChange] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
 
   const sendPhotoToServer = async (imageFile) => {
     const formData = new FormData();
-    formData.append('image', imageFile);
+    formData.append("image", imageFile);
+    console.log(imageFile);
+    console.log(formData);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/v2/detect_disease', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Server response:', response.data);
+      const response = await fetch(
+        "http://127.0.0.1:5000/api/v2/detect_disease",
+        { method: "POST", body: formData }
+      );
+      if (!response.ok) throw new Error("Failed to Fetch");
+      const data = await response.json();
+      console.log("Server response:", data);
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
     }
   };
 
@@ -29,6 +33,7 @@ function DiseaseDetectionPage() {
       const imageUrl = URL.createObjectURL(file);
       setPreviewSrc(imageUrl);
       setIsImageChange(true);
+      setImageFile(file);
     }
   };
 
@@ -38,7 +43,8 @@ function DiseaseDetectionPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Detect Plant Disease</h1>
           <p className="text-gray-800">
-            Detect the plant disease by uploading an image of the affected plant.
+            Detect the plant disease by uploading an image of the affected
+            plant.
           </p>
         </div>
 
@@ -70,7 +76,14 @@ function DiseaseDetectionPage() {
           </p>
         </div>
 
-        {isImageChange && ( <Button onClick={() => sendPhotoToServer(previewSrc)} className="mt-4 w-40 mx-auto">Detect Disease</Button>)}
+        {isImageChange && (
+          <Button
+            onClick={() => sendPhotoToServer(imageFile)}
+            className="mt-4 w-40 mx-auto"
+          >
+            Detect Disease
+          </Button>
+        )}
       </ContainerBox>
     </div>
   );
