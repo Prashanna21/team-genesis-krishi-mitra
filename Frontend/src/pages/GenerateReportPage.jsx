@@ -154,7 +154,7 @@ function GenerateReportPage() {
           {locationMode === 'manual' ? (
             <div> 
               <div className="w-full h-64 border rounded overflow-hidden relative z-0">
-              <MapContainer center={[28.3949, 84.1240]} zoom={7} className="w-full h-full">
+              <MapContainer center={[`28.3949, 84.1240`]} zoom={7} className="w-full h-full">
                 <TileLayer
                   attribution='&copy; OpenStreetMap contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -183,16 +183,7 @@ function GenerateReportPage() {
           </Button>
         </div>
 
-        {/* Recommendations */}
-        <div className="mt-10">
-          <h4 className="text-xl font-semibold mb-2">🌱 Crop Recommendations</h4>
-          <p className="text-gray-600 mb-4">Based on your selected inputs, here are some crops suitable for your region and season.</p>
-          <ul className="list-disc list-inside text-gray-800">
-            <li>Tomato – best in spring and warm climates</li>
-            <li>Rice – ideal for high humidity and summer monsoon</li>
-            <li>Strawberry – prefers cooler temperature</li>
-          </ul>
-        </div>
+      
       </ContainerBox>
     </div>
   );

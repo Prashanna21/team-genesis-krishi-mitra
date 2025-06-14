@@ -10,6 +10,8 @@ import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import GenerateReportPage from './pages/GenerateReportPage.jsx'
+import DiseaseDetectionPage from "./pages/DiseaseDetectionPage.jsx"
+
 
 const router = createBrowserRouter([
   {
@@ -36,7 +38,11 @@ const router = createBrowserRouter([
       {
         path: "generate-report",
         element: <GenerateReportPage />
-      }
+      },
+      {
+        path: "disease-detection",
+        element: <DiseaseDetectionPage />
+      },
 
     ]
   }
