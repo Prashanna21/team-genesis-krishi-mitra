@@ -1,11 +1,11 @@
 import React from "react";
-import FCard from "../components/FarmerDashBoard/FCard";
+import Features from "../components/Home/Features";
 
 const FarmerDashboard = () => {
   return (
-    <div>
-      <FCard />
-    </div>
+    <main>
+      <Features dashboard={true} />
+    </main>
   );
 };
 

@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <main className="w-full h-fit">
       <Hero />
-      <Features />
+      <Features dashboard={false} />
     </main>
   );
 };

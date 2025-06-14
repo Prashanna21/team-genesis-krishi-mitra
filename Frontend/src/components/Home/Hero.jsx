@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../ui/button.tsx";
 import { FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -29,6 +30,7 @@ const Hero = () => {
                 and promote the well-being of farmers everywhere.
               </p> */}
             </div>
+            <Link to="generate-report"></Link>
             <Button className="w-fit bg-emerald-500 md:bg-slate-800 flex gap-4 items-center hover:scale-105 cursor-pointer">
               {" "}
               Generate Your Report Now <FaAngleRight />
