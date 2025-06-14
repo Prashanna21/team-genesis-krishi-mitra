@@ -13,6 +13,7 @@ import { store } from './app/store.js'
 import GenerateReportPage from './pages/GenerateReportPage.jsx'
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage.jsx"
 
+import "./lib/i18n.ts";
 
 const router = createBrowserRouter([
   {

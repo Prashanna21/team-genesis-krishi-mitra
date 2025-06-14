@@ -5,7 +5,12 @@ import { IoPerson } from "react-icons/io5";
 import { GrMenu } from "react-icons/gr";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import { useTranslation } from "react-i18next";
+
+import TranslationBtn from "./TranslationBtn";
 const Navbar = () => {
+
+
 
   interface pageObg {
     name: string;
@@ -45,13 +50,19 @@ const Navbar = () => {
             <page.icon className="w-5 h-5" />
             {page.name}
           </NavLink>
-        ))}
+        
+        )
+        )}
+
+        <TranslationBtn />
       </nav>
 
-      <nav className="block md:hidden">
+      <nav className="flex md:hidden justify-center gap-2 items-center">
+<TranslationBtn className="" />
+
         <div className="overflow-hidden">
           <button className="w-fit text-xl text-slate-700" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <RxCross2 className="w-6 h-6" /> : <GrMenu className="w-6 h-6" />}
+            {isOpen ? <RxCross2 className="w-7 h-7" /> : <GrMenu className="w-7 h-7" />}
           </button>
 
           <div className={`fixed flex flex-col gap-4 z-50 top-18 w-[200px] rounded-tl-none bottom-0 ${isOpen ? "right-0" : "right-[-300px]"} bg-slate-100 shadow-lg rounded-lg p-4 transition-all duration-300`}>
@@ -67,6 +78,9 @@ const Navbar = () => {
                 {page.name}
               </NavLink>
             ))}
+
+            
+
           </div>
         </div>
       </nav>
