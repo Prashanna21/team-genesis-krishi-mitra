@@ -57,11 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "farmer/marketplace",
-        element: <MarketFarmer />},{
+        element: <MarketFarmer />
+      }, {
         path: 'report',
         element: <Report />
       },
-
     ]
   }
 ])
