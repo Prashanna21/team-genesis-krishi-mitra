@@ -1,5 +1,6 @@
 "use client";
-
+import { useDispatch } from "react-redux";
+import { setUserInfo, setLoginStatus } from "../../app/infoSlice.js";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,8 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -28,6 +31,8 @@ function LoginForm() {
       if (!res?.ok) {
         throw new Error(data?.message || "Login failed.");
       }
+
+      
 
       setResponseMsg("Login successful!");
       if (data?.user?.role === "farmer") {

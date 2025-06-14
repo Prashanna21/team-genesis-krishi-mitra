@@ -11,6 +11,7 @@ export const saveFamerCart =async(req, res) => {
     const newCart = new FarmerCart({
       location,
       productName,
+      
       price,
       stock
     });

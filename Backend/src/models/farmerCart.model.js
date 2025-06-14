@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const farmerCartSchema = new mongoose.Schema({
- img:{
+ image:{
    type: String,
    required: false,
    default:"https://t4.ftcdn.net/jpg/00/69/19/09/240_F_69190946_dO9NYtUPGwAcKBR3pzeuwNkQy9bRCDbg.jpg",
@@ -10,12 +10,12 @@ const farmerCartSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  productName: {
+  name: {
     type: String,
     required: true
   },
   stock: {
-    type: Number,
+    type: String,
     required: true
   },
   price: {
