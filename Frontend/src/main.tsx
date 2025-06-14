@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import MarketPlace from './pages/MarketPlace.jsx'
 import SignupPage from './pages/SignupPage.jsx'
+import FarmerDashboard from './pages/FarmerDashboard.jsx'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
@@ -29,15 +30,17 @@ const router = createBrowserRouter([
         element: <MarketPlace />
       },
       {
-
         path: "signup",
         element: <SignupPage />
+      },
+      {
+        path: "farmer",
+        element: <FarmerDashboard />
       },
       {
         path: "generate-report",
         element: <GenerateReportPage />
       }
-
     ]
   }
 ])
