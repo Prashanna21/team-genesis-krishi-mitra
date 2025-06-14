@@ -2,15 +2,25 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addReportData } from "../app/infoSlice";
 
-const sendDataToServer = async (data) => {
-  console.log(data);
+const sendDataToServer = async (data, setLoading, navigate, dispatch) => {
+  setLoading(true);
   try {
     const response = await axios.post(
       "http://localhost:3000/report/generate-report",
       data
     );
+
     console.log("Server Response:", response.data);
+
+    setLoading(false);
+
+    dispatch(addReportData(response.data));
+
+    navigate("/report");
   } catch (error) {
     console.error("Error sending data to server:", error);
   }
@@ -46,8 +56,12 @@ const LocationMarker = ({ position, setPosition, setCropLandError }) => {
 };
 
 function GenerateReportPage() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [locationMode, setLocationMode] = useState("auto");
   const [manualPosition, setManualPosition] = useState(null);
+  const dispatch = useDispatch();
+
   const [date, setDate] = useState(
     () => new Date().toISOString().split("T")[0]
   );
@@ -80,7 +94,7 @@ function GenerateReportPage() {
       locationMode,
       location,
     };
-    sendDataToServer(reportData);
+    sendDataToServer(reportData, setLoading, navigate, dispatch);
   };
 
   return (
@@ -193,12 +207,13 @@ function GenerateReportPage() {
               <div className="text-sm text-green-700">{cropLandError}</div>
             )}
             <div className="pt-4">
-              <button className="text-white bg-slate-950 p-2 px-4 transition-all duration-300 hover:bg-black text-md">
-                Generate Report
+              <button
+                className={`text-white cursor-pointer rounded-xl bg-slate-950 p-2 px-4 transition-all duration-300 hover:bg-black text-md`}
+              >
+                {loading ? "loading... " : "Generate Report"}
               </button>
             </div>
           </div>
-          {/* Submit Button */}
         </div>
       </form>
     </section>

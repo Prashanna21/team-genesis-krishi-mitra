@@ -14,6 +14,7 @@ import { store } from './app/store.js'
 import GenerateReportPage from './pages/GenerateReportPage.jsx'
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage.jsx"
 import MarketFarmer from './pages/MarketFarmer.jsx'
+import Report from "./pages/ReportPage.jsx";
 
 import "./lib/i18n.ts";
 
@@ -57,6 +58,8 @@ const router = createBrowserRouter([
       {
         path: "farmer/marketplace",
         element: <MarketFarmer />
+        path: 'report',
+        element: <Report />
       },
 
     ]

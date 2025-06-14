@@ -4,6 +4,7 @@ const initialState = {
   useInfo: {},
   isUserLoggedIn: false,
   cartItems: [],
+  reportData: {},
 };
 
 const infoSlice = createSlice({
@@ -32,10 +33,19 @@ const infoSlice = createSlice({
         (item) => item.name !== action.payload
       );
     },
+
+    addReportData: (state, action) => {
+      state.reportData = action.payload;
+    },
   },
 });
 
-export const { setUserInfo, setLoginStatus, addToCart, removeFromCart } =
-  infoSlice.actions;
+export const {
+  setUserInfo,
+  setLoginStatus,
+  addToCart,
+  removeFromCart,
+  addReportData,
+} = infoSlice.actions;
 
 export default infoSlice.reducer;
