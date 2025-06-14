@@ -29,12 +29,51 @@ const MarketFarmer = () => {
     setBlob(blobData);
   };
 
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+    try {
+      const formdata = new FormData();
+      for (const key in data) {
+        if (data[key] === "" || data[key] === null) {
+          alert(`Please fill out the ${key} field.`);
+          return;
+        } else {
+          formdata.append(key, data[key]);
+        }
+      }
+
+      const res = await fetch("http://127.0.0.1:3000/farmer/form-crops", {
+        method: "POST",
+        body: formdata,
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        alert(`Error: ${errorData.message || "Failed to submit data."}`);
+        return;
+      }
+      alert("Crops added successfully!");
+      setBlob("");
+      return setData({
+        image: null,
+        location: "",
+        name: "",
+        stock: "",
+        price: 0,
+      });
+    } catch (err) {
+      console.error("Error creating form data:", err);
+      alert("An error occurred while preparing the data. Please try again.");
+      return;
+    }
+  };
+
   return (
     <main className="w-full bg-slate-200 flex flex-col gap-4 min-h-[calc(100vh-5rem)] p-4">
       <div className="w-full max-w-6xl flex flex-col gap-4 mx-auto">
         <Title title="Add crops for sale" />
         <form
-          action=""
+          onSubmit={handleSubmission}
           className="w-full grid bg-white rounded-xl overflow-hidden lg:grid-cols-2 gap-4 grid-cols-1"
         >
           <CustomImage
@@ -66,7 +105,7 @@ const MarketFarmer = () => {
                 name="location"
                 id="location"
                 className="w-full border-2 rounded-lg border-slate-700 px-4 py-2 p- text-lg bg-white"
-                value={data.location}
+                value={data?.location}
                 onChange={handleTxt}
                 placeholder="Enter Location"
               />

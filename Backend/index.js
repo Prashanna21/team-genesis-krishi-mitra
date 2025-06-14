@@ -5,10 +5,11 @@ import cors from "cors";
 import userRouter from "./src/routes/user.route.js";
 import farmerCartRouter from "./src/routes/farmerCart.route.js";
 import rentRouter from "./src/routes/rent.route.js";
+import bodyParser from "body-parser";
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.use("/report", reportRouter);
 app.use("/user", userRouter);
