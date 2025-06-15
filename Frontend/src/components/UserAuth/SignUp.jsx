@@ -90,7 +90,7 @@ function SignupForm() {
           type="submit"
           className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 rounded-lg transition duration-300"
         >
-          Login
+          Register
         </Button>
         <p className="text-sm">
           Already Have an Account?{" "}
