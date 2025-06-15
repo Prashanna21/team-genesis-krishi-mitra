@@ -12,7 +12,6 @@ export const saveFamerCart = async (req, res) => {
       image: req?.file?.path?.replace("//", "/"),
       location,
       name,
-
       price,
       stock,
     });

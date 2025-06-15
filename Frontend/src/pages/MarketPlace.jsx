@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../app/infoSlice.js";
 import MarketCard from "../components/market/MarketCard.jsx";
-import data from "../components/market/data.json"; // Assuming you have a data file with market items
+// import data from "../components/market/data.json"; 
 
 const MarketPlace = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const dispatch = useDispatch();
   const [isCartVisible, setCartVisible] = useState(false);
+  const [datas, setDatas] = useState([]);
 
   const handleRemove = (name) => {
     dispatch(removeFromCart(name));
   };
+
+    useEffect(() => {
+      const fetchData= async()=>{
+      await axios.get("http://localhost:3000/farmer/market").then((res)=>{
+        console.log(res.data);
+        setDatas(res.data);
+      }).catch((err)=>{
+        console.log(err);
+      }) 
+      }
+      fetchData();
+    }, [])
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
@@ -39,11 +53,8 @@ const MarketPlace = () => {
       </div>
 
       <div className="w-full grid grid-cols-1 pt-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto gap-8">
-        {data
-          .filter((item) =>
-            item.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((item, index) => (
+        {
+          datas.map((item, index) => (
             <MarketCard key={index} item={item} />
           ))}
       </div>
