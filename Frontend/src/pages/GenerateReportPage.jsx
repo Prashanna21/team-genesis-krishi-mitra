@@ -142,7 +142,7 @@ function GenerateReportPage() {
 
           {/* Area */}
           <div>
-            <label className="block font-medium mb-1">Area (sq. feet)</label>
+            <label className="block font-medium mb-1">Area (sq. meter)</label>
             <input
               type="number"
               value={area}

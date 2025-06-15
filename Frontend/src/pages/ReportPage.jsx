@@ -52,10 +52,7 @@ function Report() {
 
           <SlideDown
             title="Fertilizer Cost"
-            value={data?.fertilizer_cost?.value?.replace(
-              "(approximately)",
-              ".approx"
-            )}
+            value={data?.fertilizer_cost?.value?.split("(approximately)")?.[0]}
           >
             <div className="w-full">
               <b>By calculaing :</b>
@@ -73,7 +70,7 @@ function Report() {
           {/* total seed cost */}
           <SlideDown
             title={"Estimeted Total Cost"}
-            value={data?.total_cost?.value}
+            value={data?.total_cost?.value?.split("(Approximately)")?.[0]}
           >
             <div className="w-full">
               <b>By calculaing : </b> <br />
@@ -138,6 +135,20 @@ function Report() {
             value={`${data?.roi_total_profit_by_reducing_revenue_with_total_cost?.net_profit_loss_min} - ${data?.roi_total_profit_by_reducing_revenue_with_total_cost?.net_profit_loss_max}`}
           ></SlideDown>
 
+          {/* advices */}
+          <SlideDown title={"Challanges"} value={"(Read)"}>
+            <ul className="w-full flex flex-col gap-2">
+              {data?.challenges_of_this_crop?.map((item, index) => (
+                <li key={index}>
+                  <b>
+                    {index + 1}
+                    {")"}
+                  </b>{" "}
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </SlideDown>
           {/* advices */}
           <SlideDown title={"Advice"} value={"(Read)"}>
             <ul className="w-full flex flex-col gap-2">
