@@ -17,6 +17,7 @@ import MarketFarmer from './pages/MarketFarmer.jsx'
 import Report from "./pages/ReportPage.jsx";
 
 import "./lib/i18n.ts";
+import PriceDetection from './pages/PriceDetection.jsx'
 
 const router = createBrowserRouter([
   {
@@ -44,11 +45,11 @@ const router = createBrowserRouter([
         element: <FarmerDashboard />
       },
       {
-        path: "generate-report",
+        path: "farmer/generate-report",
         element: <GenerateReportPage />
       },
       {
-        path: "disease-detection",
+        path: "farmer/disease-detection",
         element: <DiseaseDetectionPage />
       },
       {
@@ -62,6 +63,13 @@ const router = createBrowserRouter([
         path: 'report',
         element: <Report />
       },
+
+      {
+        path: "/farmer/price-detection",
+        element: <PriceDetection />
+      },
+
+
     ]
   }
 ])

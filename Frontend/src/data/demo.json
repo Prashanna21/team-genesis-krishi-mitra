@@ -1,0 +1,85 @@
+{
+  "id": 1749923708298,
+  "date": "2025-06-14",
+  "season": "Spring",
+  "area": 100,
+  "location": [27.6704711, 85.3317032],
+  "reasonForSelection": "Spring season and general soil conditions in the Kathmandu valley favour tomato growth, particularly the local variety which is adaptable to the region.",
+  "suggestedCrop": "tomato small(local)",
+  "timeRequiredForCropToGrow": "01-09-2025",
+  "soilData": {
+    "result": "Please select the crop land"
+  },
+  "is_this_best_season": {
+    "value": "No, this is not the optimal season for a main potato crop. Ideal planting time is generally for Lalitpur (mid-hills) on June 13th.",
+    "reasoning": [
+      "Spring is not the traditional season for potatoes in this area.",
+      "The planting time mismatch may lead to lower productivity."
+    ]
+  },
+  "challenges_of_this_crop": [
+    "**Poor availability of quality seed potato:** A major constraint affecting productivity, leading to lower yields and disease susceptibility.",
+    "**Lack of seed potato storage:** Inadequate cold storage facilities lead to high post-harvest losses.",
+    "**Disease and pest infestation:** Late blight, bacterial wilt, Potato Virus Y (PVY), and cutworms are significant threats.",
+    "**High production cost:** Labor, quality seed, and fertilizer costs can be significant.",
+    "**Erratic rainfall and climate change impacts:** Unpredictable weather patterns can negatively affect potato yields.",
+    "**Market volatility:** Fluctuating market prices can lead to financial losses.",
+    "**Low productivity compared to potential:** Nepal's average potato yields are often lower than their potential."
+  ],
+  "advices": [
+    "Consider raised beds for better drainage, especially given the silt-dominated soil and potential for waterlogging.",
+    "Incorporate organic matter into the soil to improve fertility and water retention. Aim for 20-30 tons of FYM/compost per hectare.",
+    "Monitor and manage pests and diseases, particularly late blight and potato tuber moth. Implement IPM strategies.",
+    "Monitor soil moisture and irrigate as needed, especially during tuber initiation. Avoid over- or under-watering."
+  ],
+  "seed_price_in_nepal_and_total_seed_needed_in_that_area": {
+    "seed_price_per_kg_avg": "NPR 35.00 - 85.00 (depending on variety and quality)",
+    "total_seed_needed_kg": {
+      "min": 250,
+      "max": 300
+    },
+    "estimated_seed_cost": {
+      "min": "NPR 8750",
+      "max": "NPR 25500"
+    }
+  },
+  "fertilizer_cost": {
+    "value": "NPR 5041.99 (approximately)",
+    "calculation": {
+      "urea": "NPR 1800",
+      "dap": "NPR 2200",
+      "mop": "NPR 1041.99"
+    }
+  },
+  "total_cost": {
+    "value": "NPR 7444.09 (approximately)",
+    "calculation": {
+      "fertilizer": "5041.99",
+      "seed": "2400",
+      "misc": "2.10"
+    }
+  },
+  "roi_total_profit_by_reducing_revenue_with_total_cost": {
+    "estimated_revenue_min": {
+      "price_per_kg": "NPR 30",
+      "yield": "388.60 kg",
+      "revenue": "NPR 11,658"
+    },
+    "estimated_revenue_max": {
+      "price_per_kg": "NPR 35",
+      "yield": "645.51 kg",
+      "revenue": "NPR 22,592.85"
+    },
+    "roi_min": "56.5%",
+    "roi_max": "203.4%",
+    "net_profit_loss_min": "NPR 4,213.91",
+    "net_profit_loss_max": "NPR 15,148.76"
+  },
+  "total_avg_production_with_that_number_of_seed": {
+    "value": "Approximately 388.60 kg - 645.51 kg (assuming average yield of 16.7 - 27.6 tonnes/hectare for Nepal)",
+    "calculation": {
+      "min_yield_t_per_ha": 16.7,
+      "max_yield_t_per_ha": 27.6
+    }
+  }
+}
