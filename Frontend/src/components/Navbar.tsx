@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const pages: pageObg[] = [
     { name: "Home", path: "/", icon: FaHome },
-    {name:"Generate Report", path:"/generate-report", icon:IoIosPaper},
+    {name:"Generate Report", path:"/farmer/generate-report", icon:IoIosPaper},
     { name: "Marketplace", path: "/marketplace", icon: FaShoppingCart },
     { name: "Login", path: "/login", icon: IoPerson },
   ]
