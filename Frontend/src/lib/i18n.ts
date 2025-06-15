@@ -17,6 +17,10 @@ i18n.use(initReactI18next).init({
             description:
               "Predict future profit on crops with our advanced report generation.",
           },
+          price: {
+            title: "Price Forecast",
+            description: "AI-powered future price prediction for crops.",
+          },
           marketplace: {
             title: "MarketPlace",
             description:
@@ -61,6 +65,10 @@ i18n.use(initReactI18next).init({
             title: "रिपोर्ट निर्माण",
             description:
               "हाम्रो प्रविधियुक्त रिपोर्ट प्रणालीले बालीको भविष्य मुनाफा अनुमान गर्छ।",
+          },
+          price: {
+            title: "मूल्य पूर्वानुमान",
+            description: "बालीको भावको लागि एआई आधारित भविष्यवाणी।",
           },
           marketplace: {
             title: "बजार",

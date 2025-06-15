@@ -4,7 +4,7 @@ import { Button } from "../components/ui/Button";
 import axios from "axios";
 
 function DiseaseDetectionPage() {
-  const [previewSrc, setPreviewSrc] = useState("DetectionPageImg.jpg");
+  const [previewSrc, setPreviewSrc] = useState("../../public/DetectionPageImg.jpg");
   const [isImageChange, setIsImageChange] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [solutionData, setSolutionData] = useState({}); // 🆕 added

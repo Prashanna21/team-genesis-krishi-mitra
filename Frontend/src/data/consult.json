@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "1",
+    "name": "Dr. Hira Lal",
+    "qualification": "PhD in Agricultural Science",
+    "speciality": "Soil Health & Crop Rotation",
+    "availability": "Mon-Fri, 10AM–5PM",
+    "location": "Kathmandu",
+    "image": "https://randomuser.me/api/portraits/men/31.jpg"
+  },
+  {
+    "_id": "2",
+    "name": "Eng. Sita Sharma",
+    "qualification": "MSc in Agricultural Engineering",
+    "speciality": "Irrigation Systems",
+    "availability": "Weekends Only",
+    "location": "Pokhara",
+    "image": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    "_id": "3",
+    "name": "Dr. Binod Bista",
+    "qualification": "PhD in Plant Pathology",
+    "speciality": "Disease Management",
+    "availability": "Mon-Wed, 1PM–6PM",
+    "location": "Lalitpur",
+    "image": "https://randomuser.me/api/portraits/men/45.jpg"
+  },
+  {
+    "_id": "4",
+    "name": "Er. Meena Thapa",
+    "qualification": "BTech in Agri-Tech",
+    "speciality": "Smart Farming & IoT",
+    "availability": "Mon-Fri, 9AM–3PM",
+    "location": "Chitwan",
+    "image": "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  {
+    "_id": "5",
+    "name": "Prof. Ramesh Koirala",
+    "qualification": "MSc in Horticulture",
+    "speciality": "Greenhouse Management",
+    "availability": "Tue-Thu, 2PM–6PM",
+    "location": "Biratnagar",
+    "image": "https://randomuser.me/api/portraits/men/50.jpg"
+  },
+  {
+    "_id": "6",
+    "name": "Dr. Sunita Maharjan",
+    "qualification": "PhD in Organic Farming",
+    "speciality": "Organic Certification Consultancy",
+    "availability": "Flexible (Appointment-based)",
+    "location": "Dharan",
+    "image": "https://randomuser.me/api/portraits/women/58.jpg"
+  },
+  {
+    "_id": "7",
+    "name": "Er. Anil Gurung",
+    "qualification": "MTech in Agricultural Machinery",
+    "speciality": "Farm Equipment Optimization",
+    "availability": "Mon-Fri, 11AM–4PM",
+    "location": "Butwal",
+    "image": "https://randomuser.me/api/portraits/men/23.jpg"
+  },
+  {
+    "_id": "8",
+    "name": "Dr. Kritika Joshi",
+    "qualification": "PhD in Climate Resilient Agriculture",
+    "speciality": "Climate-smart Practices",
+    "availability": "Sat-Sun, 10AM–2PM",
+    "location": "Bhaktapur",
+    "image": "https://randomuser.me/api/portraits/women/60.jpg"
+  }
+]

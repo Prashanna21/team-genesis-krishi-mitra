@@ -15,6 +15,7 @@ import GenerateReportPage from './pages/GenerateReportPage.jsx'
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage.jsx"
 import MarketFarmer from './pages/MarketFarmer.jsx'
 import Report from "./pages/ReportPage.jsx";
+import ConsultProfessionalPage from './pages/ConsultProfessionalPage.jsx'
 
 import "./lib/i18n.ts";
 import PriceDetection from './pages/PriceDetection.jsx'
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         path: "/farmer/price-detection",
         element: <PriceDetection />
       },
+      {
+        path: "farmer/consultation",
+        element: <ConsultProfessionalPage />
+      }
 
 
     ]
