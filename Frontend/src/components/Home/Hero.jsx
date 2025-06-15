@@ -25,7 +25,7 @@ const Hero = () => {
             <div className="text-slate-100 lg:text-slate-800">
               <p>{t("growWith.description")}</p>
             </div>
-            <Link to="generate-report">
+            <Link to="/farmer/generate-report">
               <Button className="w-fit bg-emerald-500 md:bg-slate-800 flex gap-4 items-center hover:scale-105 cursor-pointer">
                 {t("growWith.cta")} <FaAngleRight />
               </Button>
