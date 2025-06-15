@@ -63,10 +63,12 @@ const router = createBrowserRouter([
         path: 'report',
         element: <Report />
       },
+
       {
         path: "/farmer/price-detection",
         element: <PriceDetection />
-      }
+      },
+
 
     ]
   }
