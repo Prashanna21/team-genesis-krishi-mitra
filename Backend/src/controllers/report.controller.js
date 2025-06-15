@@ -63,6 +63,9 @@ ${JSON.stringify(report)}
     suggestedCropAndTime.replace(/```json|```/g, "").trim()
   );
 
+  console.log("suggested crop and time: ", cleanResponse);
+  console.log("reson for selection: ", cleanResponse.reasonForSelection);
+
   const priceApiRes = await axios.post(
     "http://127.0.0.1:5000/api/v2/predict_price",
     {
@@ -77,13 +80,14 @@ ${JSON.stringify(report)}
     ...cleanResponse,
   };
 
-  console.log("Full Report: ", fullReport);
-
   const response = await gemini(`
-    You are an expert agricultural consultant specializing in crop economics and farm management in Nepal. **You are processing the provided farm data for potato cultivation to generate a comprehensive report** in a specific JSON format, including detailed calculations and relevant agricultural advice.
+    You are an expert agricultural consultant specializing in crop economics and farm management in Nepal. **You are processing the provided farm data for what we provide data cultivation to generate a comprehensive report** in a specific JSON format, including detailed calculations and relevant agricultural advice.
+
+    I'll provide you various use data like price prediction in future by running a model, geolocation, starting date of growing crop, geolocation by long and lat and also their soil quality like ph value and stuff and also season
+we will also give you the best crop and reason for choosing it
 
 **Input Data (JSON):**
-${JSON.stringify(fullReport)} sq ft area given
+${JSON.stringify(fullReport)}
 
 output
 **Output Data (JSON):**
@@ -160,6 +164,11 @@ output
     "**Market volatility:** Fluctuating market prices can lead to financial losses.",
     "**Low productivity compared to potential:** Nepal's average potato yields are often lower than their potential."
   ],
+  "best_season_and_time_for_this_crop": {
+    "Terai region (e.g., Kailali)": "September - October (planting for winter crop - main season)",
+    "Mid-hills (e.g., Lalitpur)": "August - November (planting for autumn/winter crop)",
+    "High-hills": "December - February (planting for spring/summer crop)"
+  },
   "is_this_best_season": {
     "value": "No, this is not the optimal season for a main potato crop in Kailali (Terai region) or generally for Lalitpur (mid-hills) on June 13th.",
     "reasoning": [
@@ -191,6 +200,10 @@ output
       "value": "NPR [calculated_value]",
       "calculation": "Max production (from above) * Max future price (30 NPR/kg)."
     },
+    "estimated_revenue_avg": {
+      "value": "NPR [calculated_value]",
+      "calculation": "((Min production + Max production) / 2) * Avg future price (27 NPR/kg)."
+    },
     "roi_min": {
       "value": "[calculated_percentage]%",
       "calculation": "((Estimated Revenue Min - Total Cost) / Total Cost) * 100%."
@@ -198,6 +211,10 @@ output
     "roi_max": {
       "value": "[calculated_percentage]%",
       "calculation": "((Estimated Revenue Max - Total Cost) / Total Cost) * 100%."
+    },
+    "roi_avg": {
+      "value": "[calculated_percentage]%",
+      "calculation": "((Estimated Revenue Avg - Total Cost) / Total Cost) * 100%."
     },
     "net_profit_loss_min": {
       "value": "NPR [calculated_value]",
@@ -207,24 +224,19 @@ output
       "value": "NPR [calculated_value]",
       "calculation": "Estimated Revenue Max - Total Cost."
     },
-    
+    "net_profit_loss_avg": {
+      "value": "NPR [calculated_value]",
+      "calculation": "Estimated Revenue Avg - Total Cost."
+    },
     "note": "While the calculations show potential for profit, it is **crucial to re-emphasize the impact of the suboptimal planting season (June 13th for Kailali/Terai).** This timing significantly increases the risk of lower actual yields and higher disease pressure, making the *actual ROI/profit highly likely to be much lower, potentially resulting in a loss*, if not planted in the optimal season."
   }
 }
 
 
     `);
+  console.log(response);
 
-  const contDetailCleanResponse = JSON.parse(
-    response.replace(/```json|```/g, "").trim()
-  );
-
-  const fullDetailedReport = {
-    ...fullReport,
-    ...contDetailCleanResponse,
-  };
-
-  res.status(201).json(fullDetailedReport);
+  res.status(201).json(report);
 };
 
 const isCropLand = async (req, res) => {
