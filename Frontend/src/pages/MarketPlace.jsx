@@ -19,7 +19,7 @@ const MarketPlace = () => {
       const fetchData= async()=>{
       await axios.get("http://localhost:3000/farmer/market").then((res)=>{
         console.log(res.data);
-        setDatas(res.data);
+        setDatas(res?.data);
       }).catch((err)=>{
         console.log(err);
       }) 
@@ -53,8 +53,8 @@ const MarketPlace = () => {
       </div>
 
       <div className="w-full grid grid-cols-1 pt-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto gap-8">
-        {
-          datas.map((item, index) => (
+        {Array.isArray(datas) &&
+          datas?.map((item, index) => (
             <MarketCard key={index} item={item} />
           ))}
       </div>

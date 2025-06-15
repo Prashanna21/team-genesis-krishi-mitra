@@ -23,7 +23,7 @@ app.use("/user", userRouter);
 app.use("/farmer", farmerCartRouter);
 app.use("/rent", rentRouter);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   dbConnect();
   console.log("Server is ready");
 });
