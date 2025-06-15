@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import data from "../components/Consultation/data.json";
+import data from "../data/consult.json";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 

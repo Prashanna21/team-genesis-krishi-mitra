@@ -10,6 +10,10 @@ const Features = ({ dashboard = false }) => {
       key: "report",
       icon: "/img/features/report.png",
       route: "/farmer/generate-report",
+    }, {
+      key: "price",
+      icon: "/img/features/tag.png",
+      route: "/farmer/price-detection", // i waant some descripton like ai powered future price prediction
     },
     {
       key: "marketplace",
@@ -40,9 +44,7 @@ const Features = ({ dashboard = false }) => {
     isProvide: true,
   };
 
-  const combinedData = dashboard
-    ? [...baseData, provideRentTool]
-    : baseData;
+  const combinedData = baseData
 
   return (
     <section className="w-full p-4">
