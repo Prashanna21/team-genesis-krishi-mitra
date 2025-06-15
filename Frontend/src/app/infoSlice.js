@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  useInfo: {},
+  userInfo: {},
   isUserLoggedIn: false,
   cartItems: [],
   reportData: {},
@@ -12,7 +12,7 @@ const infoSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo: (state, action) => {
-      state.useInfo = action.payload;
+      state.userInfo = action.payload;
     },
     setLoginStatus: (state, action) => {
       state.isUserLoggedIn = action.payload;

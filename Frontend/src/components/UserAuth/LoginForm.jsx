@@ -32,7 +32,10 @@ function LoginForm() {
         throw new Error(data?.message || "Login failed.");
       }
 
-      
+      dispatch(setUserInfo(data.user));  // store user object from response
+dispatch(setLoginStatus(true));
+localStorage.setItem("userInfo", JSON.stringify(data.user));
+localStorage.setItem("isUserLoggedIn", "true");
 
       setResponseMsg("Login successful!");
       if (data?.user?.role === "farmer") {

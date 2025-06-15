@@ -41,6 +41,15 @@ i18n.use(initReactI18next).init({
               "Connect with agricultural experts for personalized advice.",
           },
         },
+        growWith: {
+          label: "Grow With",
+          hashtag: "#GrowWith",
+          title: "Nature",
+          subtitle: "Friend of Farmer",
+          description:
+            "A platform dedicated to empowering farmers with the tools and resources they need to thrive in the modern agricultural landscape.",
+          cta: "Generate Your Report Now",
+        },
       },
     },
     np: {
@@ -76,6 +85,15 @@ i18n.use(initReactI18next).init({
             description:
               "व्यक्तिगत कृषि सल्लाहको लागि विशेषज्ञहरूसँग सम्पर्क गर्नुहोस्।",
           },
+        },
+        growWith: {
+          label: "प्रकृतिसँग बढ्नुहोस्",
+          hashtag: "#GrowWith",
+          title: "प्रकृति",
+          subtitle: "कृषकको साथी",
+          description:
+            "कृषकहरूलाई आधुनिक कृषि प्रणालीमा सफल हुन आवश्यक उपकरण र स्रोतहरू उपलब्ध गराउने एक प्लेटफर्म।",
+          cta: "तपाईंको रिपोर्ट अहिले नै तयार गर्नुहोस्",
         },
       },
     },

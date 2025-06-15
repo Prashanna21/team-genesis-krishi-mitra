@@ -6,10 +6,14 @@ import { GrMenu } from "react-icons/gr";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+
 
 import TranslationBtn from "./TranslationBtn";
 const Navbar = () => {
 
+  const isUserLoggedIn = useSelector((state) => state.isUserLoggedIn);
+const userInfo = useSelector((state) => state.userInfo);
 
 
   interface pageObg {
@@ -22,10 +26,21 @@ const Navbar = () => {
     { name: "Home", path: "/", icon: FaHome },
     {name:"Generate Report", path:"/farmer/generate-report", icon:IoIosPaper},
     { name: "Marketplace", path: "/marketplace", icon: FaShoppingCart },
-    { name: "Login", path: "/login", icon: IoPerson },
+    // { name: "Login", path: "/login", icon: IoPerson },
   ]
 
   const [isOpen, setIsOpen] = useState(false);
+
+  if (isUserLoggedIn) {
+  pages.push({
+    name: `Hello, user`,
+    path: `/farmer`, // or wherever you want to link
+    icon: IoPerson,
+  });
+} else {
+  pages.push({ name: "Login", path: "/login", icon: IoPerson });
+}
+
 
   return <header className="w-full bg-white shadow-md sticky top-0 z-50">
 
