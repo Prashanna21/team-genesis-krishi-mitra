@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const fullpath  = path.join(process.cwd(), "uploads")
+const fullpath = path.join(process.cwd(), "uploads");
 console.log("Uploads directory:", existsSync(fullpath));
 
 app.use("/uploads", express.static(fullpath));

@@ -1,6 +1,25 @@
 import { gemini } from "../utility/geminiUse.js";
 import axios from "axios";
 
+const predictPrice = async (req, res) => {
+  const { Commodity, Date, Unit } = req.body;
+
+  const priceApiRes = await axios.post(
+    "http://127.0.0.1:5000/api/v2/predict_price",
+    {
+      Commodity,
+      Date,
+      Unit,
+    }
+  );
+
+  console.log("Price API Response:", priceApiRes.data.data.Predicted);
+
+  return res.status(200).json({
+    price: priceApiRes.data.data.Predicted,
+  });
+};
+
 const diseaseSolution = async (req, res) => {
   const { diseaseAndCropName } = req.body;
 
@@ -197,4 +216,4 @@ const isCropLand = async (req, res) => {
   res.status(200).json(soilData);
 };
 
-export { generateReport, isCropLand, diseaseSolution };
+export { generateReport, isCropLand, diseaseSolution, predictPrice };
