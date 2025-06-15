@@ -87,7 +87,7 @@ function DiseaseDetectionPage() {
             onChange={handleImageChange}
           />
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-white text-sm">
             Supported formats: JPG, PNG • Max size: 5MB
           </p>
         </div>
