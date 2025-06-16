@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ContainerBox from "../components/ContainerBox";
-import { Button } from "../components/ui/Button";
+import { Button } from "../components/ui/button";
 import axios from "axios";
 
 function DiseaseDetectionPage() {
-  const [previewSrc, setPreviewSrc] = useState("../../public/DetectionPageImg.jpg");
+  const [previewSrc, setPreviewSrc] = useState(
+    "../../public/DetectionPageImg.jpg"
+  );
   const [isImageChange, setIsImageChange] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [solutionData, setSolutionData] = useState({}); // 🆕 added
