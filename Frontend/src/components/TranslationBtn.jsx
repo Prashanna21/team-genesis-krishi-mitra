@@ -10,14 +10,14 @@ export function TranslationBtn({ className }) {
     if (i18n.language === "en") {
       i18n.changeLanguage("np");
       setIsCurrentLangEn(false);
-    } 
+    }
   };
 
   const handleLanugageChangeToEn = () => {
     if (i18n.language === "np") {
       i18n.changeLanguage("en");
       setIsCurrentLangEn(true);
-    } 
+    }
   };
 
   return (
@@ -38,10 +38,12 @@ export function TranslationBtn({ className }) {
             isCurrentLangEn
               ? ""
               : "bg-emerald-500 hover:bg-emerald-500 text-black  "
-          }`} onClick={handleLanugageChangeToNp}>Np
+          }`}
+          onClick={handleLanugageChangeToNp}
+        >
+          Np
         </Button>
       </div>
-      
     </div>
   );
 }
