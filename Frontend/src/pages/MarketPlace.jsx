@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../app/infoSlice.js";
 import MarketCard from "../components/market/MarketCard.jsx";
-// import data from "../components/market/data.json"; 
+// import data from "../components/market/data.json";
 
 const MarketPlace = () => {
   const cartItems = useSelector((state) => state.cartItems);
@@ -15,17 +15,20 @@ const MarketPlace = () => {
     dispatch(removeFromCart(name));
   };
 
-    useEffect(() => {
-      const fetchData= async()=>{
-      await axios.get("http://localhost:3000/farmer/market").then((res)=>{
-        console.log(res.data);
-        setDatas(res?.data);
-      }).catch((err)=>{
-        console.log(err);
-      }) 
-      }
-      fetchData();
-    }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_NODE_BACKEND_URL}/farmer/market`)
+        .then((res) => {
+          console.log(res);
+          setDatas(res?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchData();
+  }, []);
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
@@ -54,9 +57,7 @@ const MarketPlace = () => {
 
       <div className="w-full grid grid-cols-1 pt-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto gap-8">
         {Array.isArray(datas) &&
-          datas?.map((item, index) => (
-            <MarketCard key={index} item={item} />
-          ))}
+          datas?.map((item, index) => <MarketCard key={index} item={item} />)}
       </div>
     </section>
   );

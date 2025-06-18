@@ -12,17 +12,20 @@ function SignupForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/user/save-user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          role,
-        }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_NODE_BACKEND_URL}/user/save-user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            role,
+          }),
+        }
+      );
 
       const data = await res.json();
 
