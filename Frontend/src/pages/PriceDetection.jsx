@@ -19,7 +19,7 @@ const PriceDetection = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/report/predict-price",
+        `${import.meta.env.VITE_NODE_BACKEND_URL}/report/predict-price`,
         data
       );
       console.log("Response from server:", response);

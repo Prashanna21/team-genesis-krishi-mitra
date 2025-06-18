@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { IoIosPin } from "react-icons/io";
 
 const MarketCard = ({ item }) => {
-  const { image, name, price,  _id } = item;
+  const { image, name, price, _id } = item;
   return (
     <NavLink
       to={`/marketplace/${_id}`}
@@ -12,7 +12,7 @@ const MarketCard = ({ item }) => {
     >
       <div className="w-full h-64 relative">
         <img
-          src={`http://localhost:3000/${image}`}
+          src={`${import.meta.env.VITE_NODE_BACKEND_URL}/${image}`}
           alt="Market Item"
           className="w-full h-full object-cover rounded-t-2xl"
         />

@@ -14,7 +14,7 @@ function DiseaseDetectionPage() {
   const getSolution = async (diseaseAndCropName) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/report/disease-solution",
+        `${import.meta.env.VITE_NODE_BACKEND_URL}/report/disease-solution`,
         { diseaseAndCropName }
       );
 

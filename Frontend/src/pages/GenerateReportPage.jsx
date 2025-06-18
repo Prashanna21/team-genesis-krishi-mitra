@@ -10,7 +10,7 @@ const sendDataToServer = async (data, setLoading, navigate, dispatch) => {
   setLoading(true);
   try {
     const response = await axios.post(
-      "http://localhost:3000/report/generate-report",
+      `${import.meta.env.VITE_NODE_BACKEND_URL}/report/generate-report`,
       data
     );
 
@@ -29,7 +29,9 @@ const sendDataToServer = async (data, setLoading, navigate, dispatch) => {
 const sendMapDataToServer = async (lat, lng, setCropLandError) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/report/is-crop-land?lat=${lat}&lng=${lng}`
+      `${
+        import.meta.env.VITE_NODE_BACKEND_URL
+      }/report/is-crop-land?lat=${lat}&lng=${lng}`
     );
     console.log("Map Data Response:", response.data.result);
     if (response.data.result == "Please select the crop land") {
