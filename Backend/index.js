@@ -8,6 +8,8 @@ import rentRouter from "./src/routes/rent.route.js";
 import bodyParser from "body-parser";
 import path from "path";
 import { existsSync } from "fs";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 app.use(cors());
