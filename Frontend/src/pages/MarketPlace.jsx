@@ -6,9 +6,7 @@ import MarketCard from "../components/market/MarketCard.jsx";
 // import data from "../components/market/data.json";
 
 const MarketPlace = () => {
-  const cartItems = useSelector((state) => state.cartItems);
   const dispatch = useDispatch();
-  const [isCartVisible, setCartVisible] = useState(false);
   const [datas, setDatas] = useState([]);
 
   const handleRemove = (name) => {
@@ -29,13 +27,6 @@ const MarketPlace = () => {
     };
     fetchData();
   }, []);
-
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0
-  );
-
-  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const [search, setSearch] = useState("");
 
