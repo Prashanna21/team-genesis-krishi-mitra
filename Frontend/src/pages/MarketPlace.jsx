@@ -3,7 +3,6 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../app/infoSlice.js";
 import MarketCard from "../components/market/MarketCard.jsx";
-// import data from "../components/market/data.json";
 
 const MarketPlace = () => {
   const dispatch = useDispatch();
