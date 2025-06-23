@@ -5,12 +5,7 @@ import { removeFromCart } from "../app/infoSlice.js";
 import MarketCard from "../components/market/MarketCard.jsx";
 
 const MarketPlace = () => {
-  const dispatch = useDispatch();
   const [datas, setDatas] = useState([]);
-
-  const handleRemove = (name) => {
-    dispatch(removeFromCart(name));
-  };
 
   useEffect(() => {
     const fetchData = async () => {
